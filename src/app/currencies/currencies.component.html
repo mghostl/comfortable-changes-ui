@@ -1,0 +1,14 @@
+<div *ngIf="currencies && currencies.length > 0">
+  <form class="currencies-form">
+    <mat-form-field class="currencies-full-width">
+      <input type="text" placeholder="Choose currency" matInput
+             [formControl]="currencyControl" [matAutocomplete]="auto" (change)="onChange()">
+      <mat-autocomplete (optionSelected)="onChange()" #auto="matAutocomplete">
+        <mat-option *ngFor="let currency of currencies"
+                    [value]="currency">
+          {{currency}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

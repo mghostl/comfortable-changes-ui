@@ -1,0 +1,24 @@
+<div class="rates">
+
+    <mat-table class="rates-table mat-elevation-z8" [dataSource]="dataSource"  matSort>
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of itemColumns">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element[column]}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="exchange-name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Exchange</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{item.exchange.name}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+
+      <mat-row *matRowDef="let element; columns: columnsToDisplay;"
+        (click)="onRowClicked(element)"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator [length]="20" [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+</div>
