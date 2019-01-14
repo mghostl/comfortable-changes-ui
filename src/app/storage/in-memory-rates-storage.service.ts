@@ -15,6 +15,8 @@ export class InMemoryRatesStorageService implements RatesStorageService, DataSou
 
   private itemsSubject = new BehaviorSubject<Item[]>([]);
 
+  size: number;
+
   constructor(private ratesService: RatesService) {
 
   }
@@ -41,6 +43,7 @@ export class InMemoryRatesStorageService implements RatesStorageService, DataSou
             item.exchange = ratesResult.exchange;
             items.push(item);
           });
+          this.size = items.length;
         });
         items.sort((a: Item, b: Item) => {
           const rate = a.out / a.in;

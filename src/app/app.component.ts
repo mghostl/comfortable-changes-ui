@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,6 @@ export class AppComponent {
 
   public setFrom(from: string) {
     this.from = from;
-    this.to = null;
   }
 
   public setTo(to: string) {

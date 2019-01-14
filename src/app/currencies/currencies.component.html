@@ -5,8 +5,9 @@
              [formControl]="currencyControl" [matAutocomplete]="auto" (change)="onChange()">
       <mat-autocomplete (optionSelected)="onChange()" #auto="matAutocomplete">
         <mat-option *ngFor="let currency of currencies"
-                    [value]="currency">
-          {{currency}}
+                    [value]="currency.name">
+          <img *ngIf="currency.source != null" class="example-option-img" aria-hidden [src]=currency.source height="25">
+          {{currency.name}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

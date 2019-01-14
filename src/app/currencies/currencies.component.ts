@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RatesService} from '../rartes-service/rates.service';
 import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
 import {AppComponent} from '../app.component';
+import {Currency} from '../dao/currency';
+import {getSourceFile} from 'tslint';
 
 @Component({
   selector: 'app-currencies',
@@ -14,7 +16,7 @@ export class CurrenciesComponent implements OnInit {
   @Input() isFrom: boolean;
   @Input() from: string;
 
-  currencies: string[];
+  currencies: Currency[];
 
   constructor(private ratesService: RatesService, private appComponent: AppComponent) {
     this.currencyControl.registerOnChange(() => this.onChange());
@@ -50,9 +52,12 @@ export class CurrenciesComponent implements OnInit {
     }
   }
 
-  private fillCurrencies(currencies: string[]) {
+  private fillCurrencies(currencies: Currency[]) {
     console.log('allCurrencies: ' + currencies);
-    this.currencies = currencies;
+    this.currencies = [];
+    currencies.forEach(currency => {
+      this.currencies.push(new Currency(currency.name, currency.source));
+    });
   }
 
   private initFormControl(): void {
@@ -65,8 +70,10 @@ export class CurrenciesComponent implements OnInit {
 
 }
 
-export function currencyValidator(currencies: string[]): ValidatorFn {
+export function currencyValidator(currencies: Currency[]): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null =>
-    !(currencies != null && currencies.includes(control.value)) ? {'isIncludeCurrency': {value: control.value}} : null;
-
+    !(currencies != null
+      && currencies
+        .map(currency => currency.name)
+        .includes(control.value)) ? {'isIncludeCurrency': {value: control.value}} : null;
 }

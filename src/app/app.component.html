@@ -1,12 +1,17 @@
-<div class="row">
-  <div class="col-xs-3">
-    <app-currencies [isFrom]="true"></app-currencies>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <app-currencies [isFrom]="true"></app-currencies>
+    </div>
+    <div class="col-xs-6">
+      <app-currencies  *ngIf="from != null" [isFrom]="false" [from]="from"></app-currencies>
+    </div>
   </div>
-  <div class="col-xs-3">
-    <app-currencies *ngIf="from != null" [isFrom]="false" [from]="from"></app-currencies>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12">
+    <app-rates *ngIf="from && to" [from]="from" [to]="to"></app-rates>
+    </div>
   </div>
 </div>
-<br>
-
-<app-rates *ngIf="from && to" [from]="from" [to]="to"></app-rates>
-

@@ -27,13 +27,12 @@ export class RatesComponent implements OnInit, AfterViewInit, OnChanges {
   isViewInit = false;
 
   dataSource: InMemoryRatesStorageService;
-
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   // noinspection JSMethodCanBeStatic
   onRowClicked(raw) {
-    window.open(raw.exchange.url);
+    window.open(raw.exchange.ref);
     console.log('Clicked the raw: ' + raw);
   }
 
