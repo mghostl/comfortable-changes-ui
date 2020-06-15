@@ -3,11 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RatesComponent } from './rates/rates.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { CurrenciesComponent } from './currencies/currencies.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MaterialDesignModule} from './material-design/material-design.module';
+import {MaterialModule} from './material.module';
 
 @NgModule({
   declarations: [
@@ -17,11 +15,8 @@ import {MaterialDesignModule} from './material-design/material-design.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MaterialDesignModule
+    MaterialModule
   ],
   providers: [RatesComponent],
   bootstrap: [AppComponent]

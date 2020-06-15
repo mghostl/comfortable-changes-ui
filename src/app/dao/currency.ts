@@ -4,6 +4,6 @@ export class Currency {
 
   constructor(name: string, source?: string) {
     this.name = name;
-    this.source = '/img/currencies/' + source;
+    this.source = 'assets/img/currencies/' + (source != null ? source : '_default.png');
   }
 }
